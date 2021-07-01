@@ -12,3 +12,7 @@ def about(request):
 def beers_index(request):
     beers = Beer.objects.all().order_by('-abv')
     return render(request, 'beers/index.html', {'beers': beers})
+
+def beers_detail(request, beer_id):
+    beer = Beer.objects.get(id=beer_id)
+    return render(request, 'beers/detail.html', {'beer': beer})
