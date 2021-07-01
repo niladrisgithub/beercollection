@@ -16,15 +16,15 @@
             <div class="nav-wrapper">
                 <ul>
                     <li>
-                        <a class="left brand-logo" href="/">Beer Collector</a>
+                        <a class="left brand-logo" href="{% url 'home'%}">Beer Collector</a>
                     </li>
                 </ul>
                 <ul class="right">
                     <li>
-                        <a href="/about">About</a>
+                        <a href="{% url 'about' %}">About</a>
                     </li>
                     <li>
-                        <a href="/beers">View All My Beers</a>
+                        <a href="{% url 'index' %}">View All My Beers</a>
                     </li>
                 </ul>
             </div>
