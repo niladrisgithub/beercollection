@@ -1,6 +1,6 @@
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.shortcuts import render
-from .models import Beer
+from .models import Beer, Hops
 
 
 # Create your views here.
@@ -30,3 +30,7 @@ class BeerUpdate(UpdateView):
 class BeerDelete(DeleteView):
     model = Beer
     success_url = '/beers/'
+
+def hops_index(request):
+    hops = Hops.objects.all()
+    return render(request, 'hops/index.html', {'hops': hops})

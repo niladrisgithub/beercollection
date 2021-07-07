@@ -9,4 +9,5 @@ urlpatterns = [
     path('beers/create/', views.BeerCreate.as_view(), name='beers_create'),
     path('beers/<int:pk>/update/', views.BeerUpdate.as_view(), name='beers_update'),
     path('beers/<int:pk>/delete/', views.BeerDelete.as_view(), name='beers_delete'),
+    path('hops/', views.hops_index, name='hops_index'),
 ]
