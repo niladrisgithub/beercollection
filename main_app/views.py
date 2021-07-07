@@ -23,3 +23,7 @@ class BeerCreate(CreateView):
     fields = '__all__'
     success_url = '/beers/'
 
+class BeerUpdate(UpdateView):
+    model = Beer
+    fields = ['description', 'type', 'abv']
+

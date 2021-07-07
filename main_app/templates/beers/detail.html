@@ -9,5 +9,8 @@
                 <p>Type of Beer: {{ beer.type }}</p>
                 <p>ABV%: {{ beer.abv }}</p>
             </div>
+            <div class="card-action">
+                <a href="{% url 'beers_update' beer.id %}">Edit</a>
+            </div>
         </div>
 {% endblock %}
