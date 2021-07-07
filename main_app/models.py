@@ -20,6 +20,7 @@ class Beer(models.Model):
 class Hops(models.Model):
     name: models.CharField(max_length=20)
     characteristics: models.CharField(max_length=50)
+    alpha_acid: models.DecimalField(max_digits=5, decimal_places=2)
 
 
     def __str__(self):

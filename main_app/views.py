@@ -1,4 +1,3 @@
-from functools import update_wrapper
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.shortcuts import render
 from .models import Beer, Hops
@@ -47,7 +46,7 @@ class HopsCreate(CreateView):
 
 class HopsUpdate(UpdateView):
     model = Hops
-    fields = ['characteristics']
+    fields = ['characteristics', 'alpha_acid']
 
 class HopsDelete(DeleteView):
     model = Hops 

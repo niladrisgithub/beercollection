@@ -7,7 +7,7 @@
                 <p>Brewery: {{ beer.brewery_name }}</p>
                 <p>Description: {{ beer.description }}</p>
                 <p>Type of Beer: {{ beer.type }}</p>
-                <p>ABV%: {{ beer.abv }}</p>
+                <p>ABV: {{ beer.abv }}%</p>
             </div>
             <div class="card-action">
                 <a href="{% url 'beers_update' beer.id %}">Edit</a>
