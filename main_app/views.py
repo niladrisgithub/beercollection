@@ -1,3 +1,4 @@
+from functools import update_wrapper
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.shortcuts import render
 from .models import Beer, Hops
@@ -34,3 +35,20 @@ class BeerDelete(DeleteView):
 def hops_index(request):
     hops = Hops.objects.all()
     return render(request, 'hops/index.html', {'hops': hops})
+
+def hops_detail(request, hop_id):
+    hop = Hops.objects.get(id=hop_id)
+    return render(request, 'hops/detail.html', {'hop': hop})
+
+class HopsCreate(CreateView):
+    model = Hops
+    fields = '__all__'
+    success_url = '/hops/'
+
+class HopsUpdate(UpdateView):
+    model = Hops
+    fields = ['characteristics']
+
+class HopsDelete(DeleteView):
+    model = Hops 
+    success_url = '/hops/'

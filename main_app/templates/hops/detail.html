@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>Hop Details</h1>
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">{{ hop.name }}</span>
+                <p>Characteristics: {{ hop.characteristics }}</p>
+                
+            </div>
+            <div class="card-action">
+                <a href="{% url 'hops_update' hop.id %}">Edit</a>
+                <a href="{% url 'hops_delete' hop.id %}">Delete</a>
+            </div>
+        </div>
+{% endblock %}
