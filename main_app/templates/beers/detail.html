@@ -11,6 +11,7 @@
             </div>
             <div class="card-action">
                 <a href="{% url 'beers_update' beer.id %}">Edit</a>
+                <a href="{% url 'beers_delete' beer.id %}">Delete</a>
             </div>
         </div>
 {% endblock %}

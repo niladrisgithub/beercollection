@@ -27,3 +27,6 @@ class BeerUpdate(UpdateView):
     model = Beer
     fields = ['description', 'type', 'abv']
 
+class BeerDelete(DeleteView):
+    model = Beer
+    success_url = '/beers/'
