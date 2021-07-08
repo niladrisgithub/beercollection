@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
     <h1>Hops List</h1>
-    {% for hop in hop %}
+    {% for hop in hops %}
         <div class="card">
-            <a href="{% url 'detail' hop.id %}">
+            <a href="{% url 'hops_detail' hop.id %}">
                 <div class="card-content">
                     <span class="card-title">{{ hops.name }}</span>
                     <p>Characteristics: {{ hops.characteristics }}</p>
