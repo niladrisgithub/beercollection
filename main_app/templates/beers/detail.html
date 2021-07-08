@@ -1,17 +1,63 @@
 {% extends 'base.html' %}
 {% block content %}
     <h1>Beer Details</h1>
-        <div class="card">
-            <div class="card-content">
-                <span class="card-title">{{ beer.beer_name }}</span>
-                <p>Brewery: {{ beer.brewery_name }}</p>
-                <p>Description: {{ beer.description }}</p>
-                <p>Type of Beer: {{ beer.type }}</p>
-                <p>ABV: {{ beer.abv }}%</p>
-            </div>
-            <div class="card-action">
-                <a href="{% url 'beers_update' beer.id %}">Edit</a>
-                <a href="{% url 'beers_delete' beer.id %}">Delete</a>
+    <div class="row">
+        <div class="col s6">
+            <div class="card">
+                <div class="card-content">
+                    <span class="card-title">{{ beer.beer_name }}</span>
+                    <p>Brewery: {{ beer.brewery_name }}</p>
+                    <p>Description: {{ beer.description }}</p>
+                    <p>Type of Beer: {{ beer.type }}</p>
+                    <p>ABV: {{ beer.abv }}%</p>
+                </div>
+                <div class="card-action">
+                    <a href="{% url 'beers_update' beer.id %}">Edit</a>
+                    <a href="{% url 'beers_delete' beer.id %}">Delete</a>
+                </div>
             </div>
         </div>
+        <div class="col s6">
+            <form action="{% url 'add_drinking' beer.id %}" method="POST">
+                {% csrf_token %}
+                {{ drinking_form.as_p }}
+                <input type="submit" class="btn" value="Add Date Drank">
+            </form>
+            <table class="striped">
+                <thead>
+                    <tr>
+                        <th>Date Drank</th>
+                        <th>Served</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for drinking in beer.drinking_set.all %}
+                    <tr>
+                        <td>{{ drinking.date }}</td>
+                        <td>{{ drinking.get_served_display }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        // Constants
+        const dateEl = document.getElementById('id_date');
+        const selectEl = document.getElementById('id_served');
+
+        // Configure datepicker
+        M.Datepicker.init(dateEl, {
+            format: 'yyyy-mm-dd',
+            default: new Date(),
+            setDefault: true,
+            autoClose: true,
+        });
+
+        // Configure the select tag
+        M.FormSelect.init(selectEl);
+        
+    </script>
+
 {% endblock %}

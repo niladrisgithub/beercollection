@@ -1,6 +1,7 @@
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from .models import Beer, Hop
+from .forms import DrinkingForm
 
 
 # Create your views here.
@@ -14,9 +15,21 @@ def beers_index(request):
     beers = Beer.objects.all().order_by('abv')
     return render(request, 'beers/index.html', {'beers': beers})
 
+def add_drinking(request, beer_id):
+    form = DrinkingForm(request.POST)
+    if form.is_valid():
+        new_drinking = form.save(commit=False)
+        new_drinking.beer_id = beer_id
+        new_drinking.save()
+    return redirect('detail', beer_id=beer_id)
+
 def beers_detail(request, beer_id):
     beer = Beer.objects.get(id=beer_id)
-    return render(request, 'beers/detail.html', {'beer': beer})
+    drinking_form = DrinkingForm()
+    return render(request, 'beers/detail.html', {
+        'beer': beer,
+        'drinking_form': drinking_form
+        })
 
 class BeerCreate(CreateView):
     model = Beer

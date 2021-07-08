@@ -3,6 +3,13 @@ from django.urls import reverse
 
 # Create your models here.
 
+SERVED = (
+    ('C', 'Can'),
+    ('B', 'Bottle'),
+    ('D', 'Draft'),
+    ('G', 'Growler'),
+)
+
 class Beer(models.Model):
     brewery_name = models.CharField(max_length=100)
     beer_name = models.CharField(max_length=100)
@@ -28,3 +35,20 @@ class Hop(models.Model):
 
     def get_absolute_url(self):
         return reverse('detail', kwargs={'hop_id': self.id})
+
+
+class Drinking(models.Model):
+    class Meta:
+        ordering = ['-date']
+    
+    date = models.DateField('drinking date')
+    served = models.CharField(
+        max_length=1,
+        choices=SERVED,
+        default=SERVED[0][0]
+    )
+
+    beer = models.ForeignKey(Beer, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.get_served_display()} on {self.date}"
