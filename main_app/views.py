@@ -1,6 +1,6 @@
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.shortcuts import render
-from .models import Beer, Hops
+from .models import Beer, Hop
 
 
 # Create your views here.
@@ -32,22 +32,22 @@ class BeerDelete(DeleteView):
     success_url = '/beers/'
 
 def hops_index(request):
-    hops = Hops.objects.all()
+    hops = Hop.objects.all()
     return render(request, 'hops/index.html', {'hops': hops})
 
 def hops_detail(request, hop_id):
-    hop = Hops.objects.get(id=hop_id)
+    hop = Hop.objects.get(id=hop_id)
     return render(request, 'hops/detail.html', {'hop': hop})
 
 class HopsCreate(CreateView):
-    model = Hops
+    model = Hop
     fields = '__all__'
     success_url = '/hops/'
 
 class HopsUpdate(UpdateView):
-    model = Hops
+    model = Hop
     fields = ['characteristics', 'alpha_acid']
 
 class HopsDelete(DeleteView):
-    model = Hops 
+    model = Hop
     success_url = '/hops/'

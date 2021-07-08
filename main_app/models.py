@@ -17,7 +17,7 @@ class Beer(models.Model):
         return reverse('detail', kwargs={'beer_id': self.id})
 
 
-class Hops(models.Model):
+class Hop(models.Model):
     name: models.CharField(max_length=20)
     characteristics: models.CharField(max_length=50)
     alpha_acid: models.DecimalField(max_digits=5, decimal_places=2)
