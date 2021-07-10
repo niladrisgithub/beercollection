@@ -10,6 +10,7 @@ urlpatterns = [
     path('beers/create/', views.BeerCreate.as_view(), name='beers_create'),
     path('beers/<int:pk>/update/', views.BeerUpdate.as_view(), name='beers_update'),
     path('beers/<int:pk>/delete/', views.BeerDelete.as_view(), name='beers_delete'),
+    path('beers/<int:beer_id>/assoc_hop/<int:hop_id>/', views.assoc_hop, name='assoc_hop'),
     path('hops/', views.hops_index, name='hops_index'),
     path('hops/<int:hop_id>/', views.hops_detail, name='hops_detail'),
     path('hops/create/', views.HopsCreate.as_view(), name='hops_create'),

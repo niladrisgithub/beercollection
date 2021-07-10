@@ -31,6 +31,10 @@ def beers_detail(request, beer_id):
         'drinking_form': drinking_form
         })
 
+def assoc_hop(request, beer_id, hop_id):
+    Beer.objects.get(id=beer_id).hops.add(hop_id)
+    return redirect('detail', beer_id=beer_id)
+
 class BeerCreate(CreateView):
     model = Beer
     fields = '__all__'

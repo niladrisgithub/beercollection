@@ -72,7 +72,7 @@
                         </span>
                     </div>
                     <div class="card-action">
-                        <form action="" method="POST">
+                        <form action="{% url 'assoc_hop' beer.id hop.id %}" method="POST">
                             {% csrf_token %}
                             <button type="submit" class="btn">Add Hop</button>
                         </form>
