@@ -58,7 +58,8 @@ def hops_detail(request, hop_id):
 
 class HopsCreate(CreateView):
     model = Hop
-    fields = '__all__'
+    # fields = '__all__'
+    fields = ['characteristics', 'alpha_acid']
     success_url = '/hops/'
 
 class HopsUpdate(UpdateView):

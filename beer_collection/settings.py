@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'beer_collection.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'beerdb',
+        'NAME': '_beerdb',
     }
 }
 

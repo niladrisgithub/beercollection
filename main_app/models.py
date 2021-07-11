@@ -10,12 +10,33 @@ SERVED = (
     ('G', 'Growler'),
 )
 
+class Location(models.Model):
+    name: models.CharField(max_length=20)
+    restaurant: models.BooleanField()
+
+    def __str__(self):
+        return self.name
+
 
 class Hop(models.Model):
     name: models.CharField(max_length=15)
     characteristics: models.CharField(max_length=60)
     alpha_acid: models.DecimalField(max_digits=5, decimal_places=2)
     color: models.CharField(max_length=5, default='Green')
+    colors: models.CharField(max_length=5, default='Green')
+
+
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse('detail', kwargs={'hop_id': self.id})
+
+class Hops(models.Model):
+    name: models.CharField(max_length=15)
+
+
 
 
     def __str__(self):
@@ -31,7 +52,7 @@ class Beer(models.Model):
     type = models.CharField(max_length=15)
     abv = models.DecimalField(max_digits=5, decimal_places=2)
     # add M:M relationship
-    hops = models.ManyToManyField(Hop)
+    # hops = models.ManyToManyField(Hop)
 
     def __str__(self):
         return(self.beer_name)
