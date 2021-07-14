@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>Venue Details</h1>
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">{{ venue.name }}</span>
+                <p>Outdoors: {{ venue.outdoors}}</p>
+                
+            </div>
+            <div class="card-action">
+                <a href="{% url 'venue_update' venue.id %}">Edit</a>
+                <a href="{% url 'venue_delete' venue.id %}">Delete</a>
+            </div>
+        </div>
+{% endblock %}

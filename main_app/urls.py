@@ -16,4 +16,13 @@ urlpatterns = [
     path('hops/create/', views.HopsCreate.as_view(), name='hops_create'),
     path('hops/<int:pk>/update/', views.HopsUpdate.as_view(), name='hops_update'),
     path('hops/<int:pk>/delete/', views.HopsDelete.as_view(), name='hops_delete'),
+    path('venues/', views.venues_index, name='venues_index'),
+    path('venues/<int:venue_id>/', views.venue_detail, name='venues_detail'),
+    path('venues/create', views.VenueCreate.as_view(), name='venues_create'),
+    path('venues/<int:pk>/update/', views.VenueUpdate.as_view(), name='venue_update'),
+    path('venues/<int:pk>/delete/', views.VenueDelete.as_view(), name='venue_delete'),
+    # path('beers/<int:beer_id>/assoc_venue/<int:venue_id>/', views.assoc_venue, name='assoc_venue'),
+
+    
+
 ]
