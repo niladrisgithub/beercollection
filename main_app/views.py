@@ -89,7 +89,8 @@ class VenueCreate(CreateView):
 
 class VenueUpdate(UpdateView):
     model = Venue
-    fields = 'outdoor'
+    fields = ['address', 'city', 'state']
+    success_url = '/venues/'
 
 class VenueDelete(DeleteView):
     model = Venue

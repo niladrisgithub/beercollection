@@ -12,11 +12,13 @@ SERVED = (
 
 class Venue(models.Model):
     name = models.CharField(max_length=25, default='')
-    outdoor = models.BooleanField(default=True)
+    address = models.CharField(max_length=45, default='')
+    city = models.CharField(max_length=30, default='')
+    state = models.CharField(max_length=15, default='')
 
     def __str__(self):
         return self.name
-        
+
     def get_absolute_url(self):
         return reverse('detail', kwargs={'venue_id': self.id})
 

@@ -6,7 +6,9 @@
             <a href="{% url 'venues_detail' venue.id %}">
                 <div class="card-content">
                     <span class="card-title">{{ venue.name }}</span>
-                    <p>Outdoors: {{ venue.outdoor }}</p>
+                    <p>Address: {{ venue.address }}</p>
+                    <p>City: {{ venue.city }}</p>
+                    <p>State: {{ venue.state }}</p>
               
                 </div>
             </a>
