@@ -54,7 +54,12 @@ class Beer(models.Model):
         return reverse('detail', kwargs={'beer_id': self.id})
 
 
+class Photo(models.Model):
+    url = models.CharField(max_length=200)
+    beer = models.ForeignKey(Beer, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return f"Photo for beer_id: {self.beer_id} @{self.url}"
 
 class Drinking(models.Model):
     class Meta:

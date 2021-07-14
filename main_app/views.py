@@ -1,8 +1,13 @@
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.shortcuts import redirect, render
-from .models import Beer, Hop, Venue
+from .models import Beer, Hop, Venue, Photo
 from .forms import DrinkingForm
 
+import boto3
+import uuid
+
+S3_BASE_URL = 'http://s3.us-east-1.amazonaws.com/'
+BUCKET = 'nils-beer-collector'
 
 # Create your views here.
 def home(request):
@@ -22,6 +27,21 @@ def add_drinking(request, beer_id):
         new_drinking.beer_id = beer_id
         new_drinking.save()
     return redirect('detail', beer_id=beer_id)
+
+def add_photo(request, beer_id):
+    photo_file = request.FILES.get('photo-file', None)
+    if photo_file:
+        s3 = boto3.client('s3')
+        key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
+        try:
+            s3.upload_fileobj(photo_file, BUCKET, key)
+            url = f"{S3_BASE_URL}{BUCKET}/{key}"
+            photo = Photo(url=url, beer_id=beer_id)
+            photo.save()
+        except Exception as error:
+            print('An error occured uploading file to S3')
+            print(error)
+    return redirect('detail', beer_id=beer_id)            
 
 def beers_detail(request, beer_id):
     beer = Beer.objects.get(id=beer_id)
