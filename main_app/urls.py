@@ -21,7 +21,7 @@ urlpatterns = [
     path('venues/create', views.VenueCreate.as_view(), name='venues_create'),
     path('venues/<int:pk>/update/', views.VenueUpdate.as_view(), name='venue_update'),
     path('venues/<int:pk>/delete/', views.VenueDelete.as_view(), name='venue_delete'),
-    # path('beers/<int:beer_id>/assoc_venue/<int:venue_id>/', views.assoc_venue, name='assoc_venue'),
+    path('beers/<int:beer_id>/assoc_venue/<int:venue_id>/', views.assoc_venue, name='assoc_venue'),
 
     
 
