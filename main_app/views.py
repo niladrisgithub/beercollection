@@ -56,7 +56,11 @@ def beers_detail(request, beer_id):
 #     return redirect('detail', beer_id=beer_id)
 
 def assoc_hop(request, beer_id, hop_id):
-    Beer.objects.get(id=beer_id).hop.add(hop_id)
+    Beer.objects.get(id=beer_id).hops.add(hop_id)
+    return redirect('detail', beer_id=beer_id)
+
+def assoc_venue(request, beer_id, venue_id):
+    Beer.objects.get(id=beer_id).venues.add(venue_id)
     return redirect('detail', beer_id=beer_id)
 
 class BeerCreate(CreateView):
@@ -116,6 +120,3 @@ class VenueDelete(DeleteView):
     model = Venue
     success_url = '/venues/'
 
-def assoc_venue(request, beer_id, venue_id):
-    Beer.objects.get(id=beer_id).venue.add(venue_id)
-    return redirect('detail', beer_id=beer_id)
