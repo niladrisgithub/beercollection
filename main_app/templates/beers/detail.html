@@ -103,7 +103,7 @@
 <div class="row">
     <div class="col s6">
         <h3>{{ beer.beer_name }}'s Consumption Location</h3>
-    {% if beer_name.venues.count %}
+    {% if beer.venues.count %}
         {% for venue in beer.venues.all %}
             <div class="card">
                 <div class="card-content">

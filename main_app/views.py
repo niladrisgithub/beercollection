@@ -45,10 +45,14 @@ def add_photo(request, beer_id):
 
 def beers_detail(request, beer_id):
     beer = Beer.objects.get(id=beer_id)
+    hops_beer_doesnt_have = Hop.objects.exclude(id__in = beer.hops.all().values_list('id'))
+    venue_beer_doesnt_have = Venue.objects.exclude(id__in = beer.venues.all().values_list('id'))
     drinking_form = DrinkingForm()
     return render(request, 'beers/detail.html', {
         'beer': beer,
-        'drinking_form': drinking_form
+        'drinking_form': drinking_form,
+        'hops': hops_beer_doesnt_have,
+        'venues': venue_beer_doesnt_have,
         })
 
 # def assoc_hop(request, beer_id, hop_id):
