@@ -15,10 +15,6 @@ footer{
     color: black
 }
 
-#logo{
-    align-items: center;
-}
-img{
-    display: block;
-    margin: 0 auto;
+.home{
+text-align: center;
 }
