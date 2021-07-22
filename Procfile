@@ -1,0 +1,1 @@
+web: gunicorn beer_collection.wsgi
