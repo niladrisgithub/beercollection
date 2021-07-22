@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -46,6 +47,7 @@ class Beer(models.Model):
     # add M:M relationship
     hops = models.ManyToManyField(Hop)
     venues = models.ManyToManyField(Venue)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return(self.beer_name)

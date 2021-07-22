@@ -27,8 +27,9 @@ urlpatterns = [
     path('venues/<int:pk>/delete/', views.VenueDelete.as_view(), name='venue_delete'),
     path('beers/<int:beer_id>/assoc_venue/<int:venue_id>/', views.assoc_venue, name='assoc_venue'),
     #attempting a favicon
-    path('favicon.ico', RedirectView.as_view(url=staticfiles_storage.url('img/favicon.ico')))
-
+    path('favicon.ico', RedirectView.as_view(url=staticfiles_storage.url('img/favicon.ico'))),
+    # sign up
+    path('accounts/signup/', views.signup, name='signup'),
     
 
 ]
